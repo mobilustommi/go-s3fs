@@ -405,7 +405,7 @@ func (this *S3FS) PathExists(key string) bool {
 	if err != nil {
 		return false
 	}
-	if len(*list.Contents) > 0 {
+	if *list.KeyCount > 0 {
 		return true
 	}
 	return false
