@@ -400,12 +400,12 @@ func (this *S3FS) PathExists(key string) bool {
 		Bucket:    aws.String(this.config.Bucket),
 		Prefix:    aws.String(this.getKey(key)),
 		Delimiter: aws.String("/"),
-		MaxKeys:   int64(1),
+		MaxKeys:   aws.Int64(1),
 	})
 	if err != nil {
 		return false
 	}
-	if len(list) > 0 {
+	if len(*list.Contents) > 0 {
 		return true
 	}
 	return false
